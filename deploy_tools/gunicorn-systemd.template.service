@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for superlists-staging.ottg.eu
+
+[Service]
+Restart=on-failure
+User=zup779
+WorkingDirectory=/home/zup779/sites/superlists-staging.ottg.eu/source
+ExecStart=/home/zup779/sites/superlists-staging.ottg.eu/virtualenv/bin/gunicorn \
+	--bind unix:/tmp/superlists-staging.ottg.eu.socket \
+	superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
